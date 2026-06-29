@@ -1,0 +1,28 @@
+# ============================================================
+# qwen-0.5b-lab · 训练/推理环境依赖（conda 环境 qwen-lab）
+# 对应 README 里：pip install torch transformers datasets accelerate peft bitsandbytes sentencepiece
+#
+# 说明：
+# - vLLM 不在这个文件里！vLLM 对 torch/CUDA 组合敏感，单独建 qwen-vllm 环境。
+# - 下面把 baseline 推理和后续微调的依赖分开标注，方便你按阶段安装。
+# ============================================================
+
+# ---------- baseline 推理只需要这几个（第一步）----------
+torch
+# Qwen2.5 架构已合入 transformers 主干，需要较新版本；建议 >=4.44
+transformers>=4.44.0
+# device_map / 自动分片用得到；单卡推理可选，但建议装
+accelerate
+# 部分 tokenizer（如老版 Llama 系列）需要；Qwen2.5 本身不一定需要，装上无妨
+sentencepiece
+
+# ---------- 后续微调才会用到 ----------
+datasets
+peft                 # LoRA / QLoRA
+# QLoRA 的 4bit 量化，仅 Linux + NVIDIA GPU 才能装上、用得了
+bitsandbytes
+
+# ---------- 服务 / 压测客户端（vLLM 环节用，vLLM 本体装在另一个环境）----------
+fastapi
+uvicorn
+openai               # 作为 OpenAI-compatible API 的客户端

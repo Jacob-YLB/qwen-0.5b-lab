@@ -1,0 +1,50 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+.ruff_cache/
+
+# ===== 虚拟环境 =====
+.venv/
+venv/
+env/
+
+# ===== 编辑器 / 系统 =====
+.vscode/
+.idea/
+.DS_Store
+
+# ===== 机密 / 运行日志（日志可能含数据/路径，不提交）=====
+.env
+*.log
+
+# ===== 模型权重 / 训练产物：体积巨大，绝不提交 =====
+# adapter 与合并后的权重
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+*.gguf
+*.onnx
+*.gguf.json
+
+# 训练 / 推理产物目录
+outputs/
+runs/
+wandb/
+checkpoints/
+lora_log/
+
+# ===== Hugging Face 本地缓存（如果你把缓存建在项目里）=====
+.cache/
+.hf_cache/
+hf_cache/
+
+# ===== 数据：原始数据和清洗结果通常很大，按需提交 =====
+data/raw/
+data/processed/
+# 注意：data/examples/ 是要随仓库提交的小样例，下面显式放行
+!data/examples/
